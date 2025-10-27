@@ -1,406 +1,229 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alec Oxenford - Ficha Emprendedora</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
-        
-        .ficha {
-            width: 8.5in;
-            height: 11in;
-            background: white;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            padding: 45px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        /* Elementos decorativos geométricos */
-        .shape-square-big {
-            position: absolute;
-            width: 160px;
-            height: 160px;
-            background: #FF6B35;
-            top: -50px;
-            right: -50px;
-            opacity: 0.85;
-            transform: rotate(20deg);
-        }
-        
-        .shape-circle-medium {
-            position: absolute;
-            width: 130px;
-            height: 130px;
-            background: #FFC857;
-            border-radius: 50%;
-            top: 180px;
-            left: -40px;
-            opacity: 0.75;
-        }
-        
-        .shape-rectangle {
-            position: absolute;
-            width: 200px;
-            height: 80px;
-            background: #4ECDC4;
-            bottom: 120px;
-            right: -60px;
-            opacity: 0.8;
-            transform: rotate(-15deg);
-        }
-        
-        .shape-small-square {
-            position: absolute;
-            width: 70px;
-            height: 70px;
-            background: #FF6B35;
-            bottom: 200px;
-            left: 60px;
-            opacity: 0.7;
-            transform: rotate(45deg);
-        }
-        
-        /* Contenido */
-        .content {
-            position: relative;
-            z-index: 1;
-        }
-        
-        .header {
-            margin-bottom: 20px;
-            border-bottom: 4px solid #FF6B35;
-            padding-bottom: 15px;
-        }
-        
-        .nombre {
-            font-size: 36px;
-            font-weight: 700;
-            color: #2C3E50;
-            margin-bottom: 6px;
-            letter-spacing: -0.5px;
-        }
-        
-        .rol {
-            font-size: 14px;
-            font-weight: 400;
-            color: #FF6B35;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            line-height: 1.5;
-            margin-bottom: 8px;
-        }
-        
-        .info-badges {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            margin-top: 10px;
-        }
-        
-        .badge {
-            display: inline-block;
-            background: #F8F9FA;
-            border-left: 3px solid #4ECDC4;
-            padding: 5px 12px;
-            font-size: 10px;
-            font-weight: 500;
-            color: #2C3E50;
-        }
-        
-        .section {
-            margin-bottom: 18px;
-        }
-        
-        .section-title {
-            font-size: 14px;
-            font-weight: 600;
-            color: #4ECDC4;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            margin-bottom: 9px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .section-title::before {
-            content: '';
-            width: 16px;
-            height: 3px;
-            background: #4ECDC4;
-            margin-right: 8px;
-        }
-        
-        .empresas-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-top: 10px;
-        }
-        
-        .empresa-card {
-            background: linear-gradient(135deg, #FF6B35 0%, #FF8556 100%);
-            padding: 12px;
-            border-radius: 6px;
-            color: white;
-        }
-        
-        .empresa-nombre {
-            font-size: 14px;
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
-        
-        .empresa-desc {
-            font-size: 9.5px;
-            line-height: 1.4;
-            font-weight: 300;
-        }
-        
-        .proposito-text {
-            font-size: 11px;
-            color: #2C3E50;
-            line-height: 1.6;
-            text-align: justify;
-        }
-        
-        .valor-section {
-            background: #F8F9FA;
-            padding: 14px;
-            border-radius: 6px;
-            border-left: 4px solid #FFC857;
-        }
-        
-        .valor-item {
-            font-size: 10px;
-            color: #2C3E50;
-            line-height: 1.5;
-            margin-bottom: 7px;
-            padding-left: 12px;
-            position: relative;
-        }
-        
-        .valor-item::before {
-            content: '●';
-            position: absolute;
-            left: 0;
-            color: #FFC857;
-            font-weight: 700;
-        }
-        
-        .valor-item:last-child {
-            margin-bottom: 0;
-        }
-        
-        .valor-item strong {
-            color: #FF6B35;
-            font-weight: 600;
-        }
-        
-        .capitalizacion-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 8px;
-            margin-top: 10px;
-        }
-        
-        .cap-card {
-            background: white;
-            border: 2px solid #4ECDC4;
-            padding: 10px;
-            border-radius: 5px;
-            font-size: 9.5px;
-            color: #2C3E50;
-            line-height: 1.4;
-        }
-        
-        .cap-card strong {
-            display: block;
-            color: #4ECDC4;
-            font-size: 10.5px;
-            margin-bottom: 4px;
-            font-weight: 600;
-        }
-        
-        .rasgos-list {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-            margin-top: 10px;
-        }
-        
-        .rasgo-item {
-            background: #F8F9FA;
-            border-top: 3px solid #FF6B35;
-            padding: 9px;
-            font-size: 9.5px;
-            color: #2C3E50;
-            line-height: 1.4;
-            font-weight: 400;
-            text-align: center;
-        }
-        
-        .rasgo-item strong {
-            color: #FF6B35;
-            display: block;
-            margin-bottom: 4px;
-            font-size: 10px;
-            font-weight: 600;
-        }
-        
-        .footer-tag {
-            position: absolute;
-            bottom: 30px;
-            right: 45px;
-            background: #2C3E50;
-            color: white;
-            padding: 8px 20px;
-            font-size: 10px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            z-index: 2;
-        }
-        
-        @media print {
-            body {
-                padding: 0;
-            }
-            .ficha {
-                box-shadow: none;
-                width: 8.5in;
-                height: 11in;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Alec Oxenford - Ficha Emprendedora</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+
+    body{
+      font-family:'Poppins',sans-serif;
+      background:white;
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;          /* ⬅ evita el centrado vertical */
+      min-height:100vh;
+      padding:20px;
+    }
+
+    .ficha{
+      width:8.5in;
+      height:auto;                     /* ⬅ ya no se recorta */
+      min-height:11in;                 /* ⬅ apariencia “carta” */
+      background:white;
+      box-shadow:0 4px 20px rgba(0,0,0,0.1);
+      padding:45px;
+      position:relative;
+      overflow:visible;                /* ⬅ permite crecer */
+      padding-bottom:80px;             /* ⬅ respiradero inferior */
+    }
+
+    /* Elementos decorativos geométricos detrás del contenido */
+    .shape-square-big,
+    .shape-circle-medium,
+    .shape-rectangle,
+    .shape-small-square{
+      position:absolute;
+      z-index:0;                       /* ⬅ detrás */
+      pointer-events:none;
+    }
+
+    .shape-square-big{
+      width:160px;height:160px;background:#FF6B35;
+      top:-50px;right:-50px;opacity:.85;transform:rotate(20deg);
+    }
+    .shape-circle-medium{
+      width:130px;height:130px;background:#FFC857;border-radius:50%;
+      top:180px;left:-40px;opacity:.75;
+    }
+    .shape-rectangle{
+      width:200px;height:80px;background:#4ECDC4;
+      bottom:120px;right:-60px;opacity:.8;transform:rotate(-15deg);
+    }
+    .shape-small-square{
+      width:70px;height:70px;background:#FF6B35;
+      bottom:200px;left:60px;opacity:.7;transform:rotate(45deg);
+    }
+
+    /* Contenido */
+    .content{position:relative;z-index:1}
+
+    .header{margin-bottom:20px;border-bottom:4px solid #FF6B35;padding-bottom:15px}
+    .nombre{font-size:36px;font-weight:700;color:#2C3E50;margin-bottom:6px;letter-spacing:-.5px}
+    .rol{font-size:14px;font-weight:400;color:#FF6B35;text-transform:uppercase;letter-spacing:.8px;line-height:1.5;margin-bottom:8px}
+    .info-badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    .badge{display:inline-block;background:#F8F9FA;border-left:3px solid #4ECDC4;padding:5px 12px;font-size:10px;font-weight:500;color:#2C3E50}
+
+    .section{margin-bottom:18px;break-inside:avoid}   /* ⬅ evita cortes feos al imprimir */
+    .section-title{
+      font-size:14px;font-weight:600;color:#4ECDC4;text-transform:uppercase;letter-spacing:.8px;margin-bottom:9px;display:flex;align-items:center
+    }
+    .section-title::before{content:'';width:16px;height:3px;background:#4ECDC4;margin-right:8px}
+
+    .empresas-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+    .empresa-card{background:linear-gradient(135deg,#FF6B35 0%,#FF8556 100%);padding:12px;border-radius:6px;color:#fff}
+    .empresa-nombre{font-size:14px;font-weight:700;margin-bottom:4px}
+    .empresa-desc{font-size:9.5px;line-height:1.4;font-weight:300}
+
+    .proposito-text{font-size:11px;color:#2C3E50;line-height:1.6;text-align:justify}
+
+    .valor-section{background:#F8F9FA;padding:14px;border-radius:6px;border-left:4px solid #FFC857}
+    .valor-item{font-size:10px;color:#2C3E50;line-height:1.5;margin-bottom:7px;padding-left:12px;position:relative}
+    .valor-item::before{content:'●';position:absolute;left:0;color:#FFC857;font-weight:700}
+    .valor-item:last-child{margin-bottom:0}
+    .valor-item strong{color:#FF6B35;font-weight:600}
+
+    .capitalizacion-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:10px}
+    .cap-card{background:#fff;border:2px solid #4ECDC4;padding:10px;border-radius:5px;font-size:9.5px;color:#2C3E50;line-height:1.4}
+    .cap-card strong{display:block;color:#4ECDC4;font-size:10.5px;margin-bottom:4px;font-weight:600}
+
+    .rasgos-list{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+    .rasgo-item{background:#F8F9FA;border-top:3px solid #FF6B35;padding:9px;font-size:9.5px;color:#2C3E50;line-height:1.4;font-weight:400;text-align:center}
+    .rasgo-item strong{color:#FF6B35;display:block;margin-bottom:4px;font-size:10px;font-weight:600}
+
+    .footer-tag{
+      position:absolute;bottom:30px;right:45px;background:#2C3E50;color:#fff;
+      padding:8px 20px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1px;z-index:2
+    }
+
+    @media print{
+      @page{size:letter;margin:0.5in}
+      body{padding:0}
+      .ficha{
+        box-shadow:none;
+        width:100%;
+        height:auto;                 /* ⬅ sin recortes en PDF/impresión */
+        min-height:11in;
+        overflow:visible;
+        padding-bottom:40px;
+      }
+      .section,.cap-card,.rasgo-item{break-inside:avoid}
+    }
+  </style>
 </head>
 <body>
-    <div class="ficha">
-        <!-- Formas geométricas decorativas -->
-        <div class="shape-square-big"></div>
-        <div class="shape-circle-medium"></div>
-        <div class="shape-rectangle"></div>
-        <div class="shape-small-square"></div>
-        
-        <div class="content">
-            <!-- Header -->
-            <div class="header">
-                <div class="nombre">Alec Oxenford</div>
-                <div class="rol">Emprendedor en Tecnología · Cofundador OLX y letgo · Inversionista</div>
-                <div class="info-badges">
-                    <span class="badge">🇦🇷 Argentina</span>
-                    <span class="badge">Lic. Administración (UCA)</span>
-                    <span class="badge">MBA Harvard Business School</span>
-                </div>
-            </div>
-            
-            <!-- Empresas fundadas -->
-            <div class="section">
-                <div class="section-title">Empresas Fundadas</div>
-                <div class="empresas-grid">
-                    <div class="empresa-card">
-                        <div class="empresa-nombre">OLX (2006)</div>
-                        <div class="empresa-desc">Plataforma global de clasificados en línea. Presente en más de 40 países.</div>
-                    </div>
-                    <div class="empresa-card">
-                        <div class="empresa-nombre">letgo (2015)</div>
-                        <div class="empresa-desc">App de compraventa móvil con IA y experiencia visual en tiempo real.</div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Propósito -->
-            <div class="section">
-                <div class="section-title">Propósito</div>
-                <p class="proposito-text">
-                    Alec Oxenford encarna la transición del pensamiento empresarial tradicional hacia la innovación tecnológica global. Su propósito ha sido crear plataformas que transformen mercados ineficientes en ecosistemas abiertos, accesibles y escalables, especialmente en economías emergentes, entendiendo la empresa como vehículo de movilidad, acceso y confianza entre personas.
-                </p>
-            </div>
-            
-            <!-- Creación de valor -->
-            <div class="section">
-                <div class="section-title">Creación de Valor</div>
-                <div class="valor-section">
-                    <div class="valor-item"><strong>Plataformas peer-to-peer:</strong> Aplicó principios de administración clásica al entorno digital, creando modelos escalables con poca fricción.</div>
-                    <div class="valor-item"><strong>OLX:</strong> Simplificó compraventa local globalmente, inspirada en economía colaborativa pre-apps móviles.</div>
-                    <div class="valor-item"><strong>letgo:</strong> Combinó experiencia previa con IA y UX móvil para transacciones seguras y visuales.</div>
-                    <div class="valor-item"><strong>Enfoque estratégico:</strong> Adaptó modelos globales a realidades locales en mercados emergentes.</div>
-                    <div class="valor-item"><strong>Innovación blanda:</strong> Arquitectura organizacional y cultural que permite tecnología a escala humana.</div>
-                </div>
-            </div>
-            
-            <!-- Capitalización -->
-            <div class="section">
-                <div class="section-title">Capitalización del Valor</div>
-                <div class="capitalizacion-grid">
-                    <div class="cap-card">
-                        <strong>Escala Internacional</strong>
-                        OLX adquirida parcialmente por Naspers, consolidándose como marketplace global. Letgo fusionada con OfferUp (2020).
-                    </div>
-                    <div class="cap-card">
-                        <strong>Capital Relacional</strong>
-                        Inversionista ángel y consejero impulsando talento latinoamericano en ecosistemas globales.
-                    </div>
-                    <div class="cap-card">
-                        <strong>Valor Reputacional</strong>
-                        "Diplomático de innovación" en foros internacionales (Harvard, BID, WEF).
-                    </div>
-                    <div class="cap-card">
-                        <strong>Posicionamiento Regional</strong>
-                        Posiciona a América Latina como territorio viable para emprendimientos tech.
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Rasgos emprendedores -->
-            <div class="section">
-                <div class="section-title">Mentalidad Emprendedora Transformadora</div>
-                <div class="rasgos-list">
-                    <div class="rasgo-item">
-                        <strong>Visión Transicional</strong>
-                        Convierte estructuras tradicionales en plataformas abiertas
-                    </div>
-                    <div class="rasgo-item">
-                        <strong>Diplomacia Tech</strong>
-                        Puente entre inversores, gobiernos y desarrolladores
-                    </div>
-                    <div class="rasgo-item">
-                        <strong>Riesgo Calculado</strong>
-                        Combina racionalidad económica con intuición tecnológica
-                    </div>
-                    <div class="rasgo-item">
-                        <strong>Innovador Sistémico</strong>
-                        Tecnología como medio para rediseñar industrias
-                    </div>
-                    <div class="rasgo-item">
-                        <strong>Escalabilidad Contextual</strong>
-                        Adapta globalmente sin perder sensibilidad local
-                    </div>
-                    <div class="rasgo-item">
-                        <strong>Confianza como Activo</strong>
-                        Capitaliza integridad, visión y red profesional
-                    </div>
-                </div>
-            </div>
+  <div class="ficha">
+    <!-- Formas geométricas decorativas -->
+    <div class="shape-square-big"></div>
+    <div class="shape-circle-medium"></div>
+    <div class="shape-rectangle"></div>
+    <div class="shape-small-square"></div>
+
+    <div class="content">
+      <!-- Header -->
+      <div class="header">
+        <div class="nombre">Alec Oxenford</div>
+        <div class="rol">Emprendedor en Tecnología · Cofundador OLX y letgo · Inversionista</div>
+        <div class="info-badges">
+          <span class="badge">🇦🇷 Argentina</span>
+          <span class="badge">Lic. Administración (UCA)</span>
+          <span class="badge">MBA Harvard Business School</span>
         </div>
-        
-        <div class="footer-tag">Instituto de Emprendimiento</div>
+      </div>
+
+      <!-- Empresas fundadas -->
+      <div class="section">
+        <div class="section-title">Empresas Fundadas</div>
+        <div class="empresas-grid">
+          <div class="empresa-card">
+            <div class="empresa-nombre">OLX (2006)</div>
+            <div class="empresa-desc">Plataforma global de clasificados en línea. Presente en más de 40 países.</div>
+          </div>
+          <div class="empresa-card">
+            <div class="empresa-nombre">letgo (2015)</div>
+            <div class="empresa-desc">App de compraventa móvil con IA y experiencia visual en tiempo real.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Propósito -->
+      <div class="section">
+        <div class="section-title">Propósito</div>
+        <p class="proposito-text">
+          Alec Oxenford encarna la transición del pensamiento empresarial tradicional hacia la innovación tecnológica global. Su propósito ha sido crear plataformas que transformen mercados ineficientes en ecosistemas abiertos, accesibles y escalables, especialmente en economías emergentes, entendiendo la empresa como vehículo de movilidad, acceso y confianza entre personas.
+        </p>
+      </div>
+
+      <!-- Creación de valor -->
+      <div class="section">
+        <div class="section-title">Creación de Valor</div>
+        <div class="valor-section">
+          <div class="valor-item"><strong>Plataformas peer-to-peer:</strong> Aplicó principios de administración clásica al entorno digital, creando modelos escalables con poca fricción.</div>
+          <div class="valor-item"><strong>OLX:</strong> Simplificó compraventa local globalmente, inspirada en economía colaborativa pre-apps móviles.</div>
+          <div class="valor-item"><strong>letgo:</strong> Combinó experiencia previa con IA y UX móvil para transacciones seguras y visuales.</div>
+          <div class="valor-item"><strong>Enfoque estratégico:</strong> Adaptó modelos globales a realidades locales en mercados emergentes.</div>
+          <div class="valor-item"><strong>Innovación blanda:</strong> Arquitectura organizacional y cultural que permite tecnología a escala humana.</div>
+        </div>
+      </div>
+
+      <!-- Capitalización -->
+      <div class="section">
+        <div class="section-title">Capitalización del Valor</div>
+        <div class="capitalizacion-grid">
+          <div class="cap-card">
+            <strong>Escala Internacional</strong>
+            OLX adquirida parcialmente por Naspers, consolidándose como marketplace global. Letgo fusionada con OfferUp (2020).
+          </div>
+          <div class="cap-card">
+            <strong>Capital Relacional</strong>
+            Inversionista ángel y consejero impulsando talento latinoamericano en ecosistemas globales.
+          </div>
+          <div class="cap-card">
+            <strong>Valor Reputacional</strong>
+            "Diplomático de innovación" en foros internacionales (Harvard, BID, WEF).
+          </div>
+          <div class="cap-card">
+            <strong>Posicionamiento Regional</strong>
+            Posiciona a América Latina como territorio viable para emprendimientos tech.
+          </div>
+        </div>
+      </div>
+
+      <!-- Rasgos emprendedores -->
+      <div class="section">
+        <div class="section-title">Mentalidad Emprendedora Transformadora</div>
+        <div class="rasgos-list">
+          <div class="rasgo-item">
+            <strong>Visión Transicional</strong>
+            Convierte estructuras tradicionales en plataformas abiertas
+          </div>
+          <div class="rasgo-item">
+            <strong>Diplomacia Tech</strong>
+            Puente entre inversores, gobiernos y desarrolladores
+          </div>
+          <div class="rasgo-item">
+            <strong>Riesgo Calculado</strong>
+            Combina racionalidad económica con intuición tecnológica
+          </div>
+          <div class="rasgo-item">
+            <strong>Innovador Sistémico</strong>
+            Tecnología como medio para rediseñar industrias
+          </div>
+          <div class="rasgo-item">
+            <strong>Escalabilidad Contextual</strong>
+            Adapta globalmente sin perder sensibilidad local
+          </div>
+          <div class="rasgo-item">
+            <strong>Confianza como Activo</strong>
+            Capitaliza integridad, visión y red profesional
+          </div>
+        </div>
+      </div>
     </div>
+
+    <div class="footer-tag">Instituto de Emprendimiento</div>
+  </div>
 </body>
 </html>
